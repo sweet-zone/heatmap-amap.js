@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>高德地图热力图Demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			#amap {width: 100%; height: 600px;}
+		</style>
+	</head>
+	<body>
+		<div id="amap"></div>
+		<div>
+			<button id="toggle">Toggle</button>
+		</div>
+		
+		<script src="http://webapi.amap.com/maps?v=1.3&key=yourkey"></script>
+		<script src="heatmap-amap.js" ></script>
+		<script>
+		window.onload = function() {
+			var amap = new AMap.Map('amap');
+			
+			var heatmap = new AMap.Heatmap(amap, {
+				'radius': 30
+			});
+			
+			heatmap.start();
+			
+			var obj = {
+				max: 90,
+				data: [
+					{lng:114.169922, lat:30.606004, count: 80},
+					{lng:114.322357, lat:30.640275, count: 60},
+					{lng:114.33197, lat:30.556348, count: 90},
+					{lng:114.32373, lat:30.512583, count: 70},
+					{lng:114.263306, lat:30.46643, count: 40},
+					{lng:114.204254, lat:30.520864, count: 80},
+					{lng:114.244254, lat:30.550864, count: 40},
+					{lng:114.234254, lat:30.540864, count: 60},
+					{lng:114.214254, lat:30.510864, count: 70},
+					{lng:114.214254, lat:30.530864, count: 70},
+					{lng:114.214254, lat:30.570864, count: 70},
+					{lng:114.214254, lat:30.510864, count: 70},
+					{lng:114.214254, lat:30.500864, count: 70}
+				]
+			};
+			
+			heatmap.setDataSet(obj);
+
+			document.getElementById('toggle').onclick = function() {
+				heatmap.toggle();
+			}
+		}
+			
+		</script>
+	</body>
+</html>
